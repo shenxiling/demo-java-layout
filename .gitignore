@@ -1,0 +1,6 @@
+.classpath
+src/main/resources/static/ui/.idea/
+.settings/
+.project
+.gradle/
+bin/

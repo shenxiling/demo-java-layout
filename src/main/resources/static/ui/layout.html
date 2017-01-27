@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge;chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>layout</title>
+    <script src="lib/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="lib/throttle/jquery.ba-throttle-debounce.min.js" type="text/javascript"></script>
+    <script src="lib/arbor/arbor.js" type="text/javascript"></script>
+    <script src="lib/arbor/arbor-tween.js" type="text/javascript"></script>
+    <script src="js/widget/layout/LayoutUtils.js" type="text/javascript"></script>
+    <script src="js/component/CollectionUtils.js" type="text/javascript"></script>
+    <script src="js/component/ThrottleUtils.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //region mock
+
+            var COUNT = 100;
+
+        	var lstNode=[];
+            var lstLink=[];
+            for(var i=1;i<=COUNT;i++)
+            {
+                var oNode={
+                    name:"node"+i,
+                    data:{
+                        prop1:i,
+                        prop2:i
+                    }
+                };
+                lstNode.push(oNode);
+                var oLink={
+                    srcNodeName:"node"+i,
+                    dstNodeName:"node1",
+                    data:{
+                        prop1:i,
+                        prop2:i
+                    }
+                };
+                lstLink.push(oLink);
+            }
+            
+            //endregion
+
+            var oWhOption={
+            	width:800,
+                height:600	
+            };
+            var oDataOption={
+                arborNodes:lstNode,
+                arborLinks:lstLink
+            };
+            var oCallbackOption={
+                delayMs: 2000,
+            	oRedrawCallback:function(mapNodes){
+                    console.log("redraw...");
+                    var strRes = "";
+                    $.each(mapNodes, function(strKey, oValue){
+                        strRes += strKey + "(" + oValue.x + "," + oValue.y + ")," + "\r\n";
+                    });
+                    strRes += "\r\n\r\n";
+                    $("#textAreaRes").val($("#textAreaRes").val() + strRes);
+                }
+            };
+            var oLayoutUtils=new $.LayoutUtils();
+            oLayoutUtils.layout(oWhOption,oDataOption,oCallbackOption);
+
+            $("#btnStop").click(function(){
+                oLayoutUtils.stop();
+            });
+        })
+    </script>
+</head>
+<body>
+    <textarea id="textAreaRes" style="width: 500px;height:300px;"></textarea>
+    <button id="btnStop">停止布局</button>
+</body>
+</html>
