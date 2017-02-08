@@ -12,8 +12,10 @@
     <script src="js/widget/layout/LayoutUtils.js" type="text/javascript"></script>
     <script src="js/component/CollectionUtils.js" type="text/javascript"></script>
     <script src="js/component/ThrottleUtils.js" type="text/javascript"></script>
+    <script src="js/component/AjaxUtils.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+        	//1.局部布局相关代码/////////////////////////////////////////////////
             //region mock
 
             var COUNT = 100;
@@ -64,16 +66,63 @@
                 }
             };
             var oLayoutUtils=new $.LayoutUtils();
-            oLayoutUtils.layout(oWhOption,oDataOption,oCallbackOption);
-
+            
+            $("#btnStart").click(function(){
+            	oLayoutUtils.layout(oWhOption,oDataOption,oCallbackOption);	
+            });
             $("#btnStop").click(function(){
                 oLayoutUtils.stop();
             });
+            
+          	//2.后台自定义布局相关代码/////////////////////////////////////////////////
+        	$("#btnStartGraphvizClient").click(function(){
+        		var strUrl = "/hello";
+        		var oParams = {};
+        		ajaxUtils.postAjax(strUrl, oParams, function(strRes){
+        			
+        		}, function(strRes){
+        			
+        		});
+        	});
+        	$("#btnGraphSplit").click(function(){
+        		var strUrl = "/split";
+        		var oParams = {};
+        		ajaxUtils.postAjax(strUrl, oParams, function(strRes){
+        			
+        		}, function(strRes){
+        			
+        		});
+        	});
+        	$("#btnGraphSave").click(function(){
+        		var strUrl = "/save";
+        		var oParams = {};
+        		ajaxUtils.postAjax(strUrl, oParams, function(strRes){
+        			
+        		}, function(strRes){
+        			
+        		});
+        	});
+        	$("#btnStartGraphviz").click(function(){
+        		var strUrl = "/layout";
+        		var oParams = {};
+        		ajaxUtils.postAjax(strUrl, oParams, function(strRes){
+        			
+        		}, function(strRes){
+        			
+        		});
+        	});
         })
     </script>
 </head>
 <body>
+	<h1>局部布局</h1>
+	<button id="btnStart">开始局部布局</button>
     <textarea id="textAreaRes" style="width: 500px;height:300px;"></textarea>
-    <button id="btnStop">停止布局</button>
+    <button id="btnStop">停止局部布局</button>
+    <h1>后台布局</h1>
+    <button id="btnStartGraphvizClient">Bu布局</button>
+    <button id="btnGraphSplit">子网划分</button>
+    <button id="btnGraphSave">保存</button>
+    <button id="btnStartGraphviz">开始布局</button>
 </body>
 </html>
