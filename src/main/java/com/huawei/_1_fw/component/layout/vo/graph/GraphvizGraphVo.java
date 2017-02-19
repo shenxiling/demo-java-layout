@@ -16,7 +16,11 @@ public class GraphvizGraphVo {
 
 	@Setter
 	@Getter
-	private List<GraphvizNodeVo> lstNode;
+	private List<GraphvizNodeVo> lstFirstLineNode;
+	
+	@Setter
+	@Getter
+	private List<GraphvizNodeVo> lstOtherNode;
 
 	@Setter
 	@Getter

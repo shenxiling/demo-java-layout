@@ -23,7 +23,8 @@ public class GraphvizBuUtils {
 	// #endregion
 
 	// #region save
-
+	
+	//TODO:重载？将多层topo的展示相关信息入库，
 	public static String save(GraphvizGraphVo oGraphvizGraphVo) {
 		// 更新数据库中GraphvizGraphVo的rule相关信息（子网的xOffsetOnGraph、yOffsetOnGraph、heightOnGraph、widthOnGraph和enumLayoutType）
 		GraphvizGraphVoCache.getInstance().setGraphvizGraphVo(oGraphvizGraphVo);
@@ -34,6 +35,7 @@ public class GraphvizBuUtils {
 
 	// #region layout
 
+	//TODO:重载or另外创建单独的接口
 	public static List<GraphvizNodeVo> layout(GraphvizBuGraphVo oGraphvizBuGraphVo) {
 		// 1.根据输入的oGraphvizBuGraphVo，更新到缓存中的GraphvizGraphVoCache（只存在节点增减的变化，子网划分不变）
 		GraphvizGraphVo oGraphvizGraphVo = GraphvizGraphVoProvider.genGraphvizGraphVo4Node(oGraphvizBuGraphVo);
@@ -44,7 +46,7 @@ public class GraphvizBuUtils {
 		GraphvizConfigVo oGraphvizConfigVo = new GraphvizConfigVo();
 		oGraphvizConfigVo.setDirPathRoot("C:\\tmp");
 		oGraphvizConfigVo.setGraphvizPath("C:\\tmp\\graphviz.exe");
-		return GraphvizUtils.layout(GraphvizGraphVoCache.getInstance().getGraphvizGraphVo(), oGraphvizConfigVo);
+		return GraphvizUtils.layoutOneLayer(GraphvizGraphVoCache.getInstance().getGraphvizGraphVo(), oGraphvizConfigVo);
 	}
 
 	// #endregion

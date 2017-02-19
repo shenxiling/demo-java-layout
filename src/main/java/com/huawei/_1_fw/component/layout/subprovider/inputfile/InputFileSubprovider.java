@@ -19,7 +19,8 @@ public class InputFileSubprovider {
 	 */
 	public static String genInputFile(GraphvizGraphVo oGraphvizGraphVo, GraphvizConfigVo oGraphvizConfigVo) {
 		String strCompletePath = oGraphvizConfigVo.getDirPathRoot() + oGraphvizGraphVo.getName();
-		List<GraphvizNodeVo> lstInputNode = oGraphvizGraphVo.getLstNode();
+		List<GraphvizNodeVo> lstInputNode = oGraphvizGraphVo.getLstFirstLineNode();
+		lstInputNode.addAll(oGraphvizGraphVo.getLstOtherNode());
 		for (GraphvizGraphVo oSubgraph : oGraphvizGraphVo.getLstSubgraph()) {
 			// lstInputNode.add(oSubgraph.getGraphvizRuleInstanceVo().getNodeOffset());
 		}

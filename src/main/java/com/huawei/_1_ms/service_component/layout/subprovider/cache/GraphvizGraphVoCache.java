@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class GraphvizGraphVoCache {
-	// TODO GraphvizGraphVo需要考虑线程安全
+	// TODO GraphvizGraphVo需要考虑线程安全（加读写锁）
 	// #region Field
 
 	@Getter
